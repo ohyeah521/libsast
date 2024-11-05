@@ -46,7 +46,7 @@ class PatternMatcher:
         }
 
         # Use a ThreadPool for file reading, and ProcessPool for CPU-bound regex
-        with ThreadPoolExecutor() as io_executor, ProcessPoolExecutor(
+        with ThreadPoolExecutor(max_workers=self.cpu) as io_executor, ProcessPoolExecutor(
                 max_workers=self.cpu) as cpu_executor:
 
             # Read all files
