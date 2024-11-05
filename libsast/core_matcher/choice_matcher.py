@@ -49,7 +49,7 @@ class ChoiceMatcher:
 
         # Use ThreadPoolExecutor for reading file contents and
         # ProcessPoolExecutor for processing regex
-        with ThreadPoolExecutor() as io_executor, ProcessPoolExecutor(
+        with ThreadPoolExecutor(max_workers=self.cpu) as io_executor, ProcessPoolExecutor(
                 max_workers=self.cpu) as cpu_executor:
             futures = []
             for args_tuple in choice_args:
