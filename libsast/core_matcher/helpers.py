@@ -150,9 +150,11 @@ def is_file_valid(sfile, allowed_extensions=None, max_size_mb=5):
 
     # Check if the file size exceeds the maximum limit (in bytes)
     max_size_bytes = max_size_mb * 1024 * 1024  # Convert MB to bytes
-    if sfile.stat().st_size > max_size_bytes:
+    try:
+        if sfile.stat().st_size > max_size_bytes:
+            return False
+    except:
         return False
-
     return True
 
 
