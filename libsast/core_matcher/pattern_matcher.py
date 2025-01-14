@@ -53,7 +53,7 @@ class PatternMatcher:
             return []
 
         # Use a ThreadPool for file reading
-        with ThreadPoolExecutor() as io_executor:
+        with ThreadPoolExecutor(max_workers=self.cpu) as io_executor:
 
             # Read all files
             file_contents = list(io_executor.map(
