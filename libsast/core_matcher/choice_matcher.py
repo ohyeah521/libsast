@@ -55,7 +55,7 @@ class ChoiceMatcher:
             return []
 
         # Use ThreadPoolExecutor for file reading
-        with ThreadPoolExecutor() as io_executor:
+        with ThreadPoolExecutor(max_workers=self.cpu) as io_executor:
             # Submit file reading tasks and wait for results
             futures = []
             for args_tuple in choice_args:
